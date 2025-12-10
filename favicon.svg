@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
+  <circle cx="16" cy="16" r="15" fill="#F5F0E6" stroke="#4A3728" stroke-width="1"/>
+
+  <!-- U&A text in brand style -->
+  <text x="16" y="21"
+        font-family="Georgia, serif"
+        font-size="12"
+        font-weight="bold"
+        fill="#4A3728"
+        text-anchor="middle">U&amp;A</text>
+
+  <!-- Decorative line underneath -->
+  <path d="M8 24 Q16 26 24 24" stroke="#C4A574" stroke-width="1.5" fill="none"/>
+</svg>
