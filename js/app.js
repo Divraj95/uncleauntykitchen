@@ -18,7 +18,18 @@ async function loadData(filename) {
     try {
         const response = await fetch(`data/${filename}.json`);
         if (!response.ok) throw new Error(`Failed to load ${filename}`);
-        const data = await response.json();
+        const text = await response.text();
+
+        // Try to parse JSON and show helpful error if it fails
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch (parseError) {
+            console.error(`JSON syntax error in ${filename}.json:`, parseError.message);
+            console.error('Check for missing commas, extra commas, or unclosed brackets');
+            return null;
+        }
+
         dataCache[filename] = data;
         return data;
     } catch (error) {
@@ -55,27 +66,29 @@ async function renderAbout() {
     if (!about) return;
 
     const section = document.querySelector('#about');
-    section.querySelector('h2').textContent = about.title;
+    section.querySelector('h2').textContent = about.title || 'About Us';
 
-    // Paragraphs
+    // Paragraphs - handle any number
     const textContainer = section.querySelector('.about-text');
-    const paragraphsHtml = about.paragraphs
+    const paragraphs = Array.isArray(about.paragraphs) ? about.paragraphs : [];
+    const paragraphsHtml = paragraphs
         .map(p => `<p>${p}</p>`)
         .join('');
 
-    // Features
-    const featuresHtml = about.features
+    // Features - handle any number
+    const features = Array.isArray(about.features) ? about.features : [];
+    const featuresHtml = features
         .map(f => `
             <div class="feature">
-                <span class="feature-icon">${f.icon}</span>
-                <span>${f.text}</span>
+                <span class="feature-icon">${f.icon || ''}</span>
+                <span>${f.text || ''}</span>
             </div>
         `)
         .join('');
 
     textContainer.innerHTML = `
         ${paragraphsHtml}
-        <div class="features">${featuresHtml}</div>
+        ${features.length ? `<div class="features">${featuresHtml}</div>` : ''}
     `;
 }
 
@@ -87,30 +100,35 @@ async function renderMenu() {
     if (!menu) return;
 
     const section = document.querySelector('#menu');
-    section.querySelector('h2').textContent = menu.title;
+    section.querySelector('h2').textContent = menu.title || 'Our Menu';
 
-    // Categories
+    // Categories - handle any number of categories and items
     const gridContainer = section.querySelector('.menu-grid');
-    const categoriesHtml = menu.categories
-        .map(category => `
-            <div class="menu-category">
-                <h3>${category.name}</h3>
-                <ul>
-                    ${category.items.map(item => `
-                        <li>
-                            <span class="dish-name">${item.name}</span>
-                            <span class="dish-desc">${item.description}</span>
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
-        `)
+    const categories = Array.isArray(menu.categories) ? menu.categories : [];
+
+    const categoriesHtml = categories
+        .map(category => {
+            const items = Array.isArray(category.items) ? category.items : [];
+            return `
+                <div class="menu-category">
+                    <h3>${category.name || 'Menu'}</h3>
+                    <ul>
+                        ${items.map(item => `
+                            <li>
+                                <span class="dish-name">${item.name || ''}</span>
+                                <span class="dish-desc">${item.description || ''}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+        })
         .join('');
 
     gridContainer.innerHTML = categoriesHtml;
 
     // Note
-    section.querySelector('.menu-note').textContent = menu.note;
+    section.querySelector('.menu-note').textContent = menu.note || '';
 }
 
 /**
@@ -121,16 +139,17 @@ async function renderServices() {
     if (!services) return;
 
     const section = document.querySelector('#services');
-    section.querySelector('h2').textContent = services.title;
+    section.querySelector('h2').textContent = services.title || 'Our Services';
 
-    // Service cards
+    // Service cards - handle any number
     const gridContainer = section.querySelector('.services-grid');
-    const servicesHtml = services.items
+    const items = Array.isArray(services.items) ? services.items : [];
+    const servicesHtml = items
         .map(service => `
             <div class="service-card">
-                <div class="service-icon">${service.icon}</div>
-                <h3>${service.name}</h3>
-                <p>${service.description}</p>
+                <div class="service-icon">${service.icon || ''}</div>
+                <h3>${service.name || ''}</h3>
+                <p>${service.description || ''}</p>
             </div>
         `)
         .join('');
@@ -146,21 +165,22 @@ async function renderContact() {
     if (!contact) return;
 
     const section = document.querySelector('#contact');
-    section.querySelector('h2').textContent = contact.title;
+    section.querySelector('h2').textContent = contact.title || 'Contact Us';
 
-    // Contact details
+    // Contact details - handle any number of contact items
     const infoContainer = section.querySelector('.contact-info');
-    const details = contact.details;
+    const details = contact.details || {};
+    const detailItems = Object.values(details);
 
-    const contactHtml = Object.values(details)
+    const contactHtml = detailItems
         .map(item => `
             <div class="contact-item">
-                <span class="contact-icon">${item.icon}</span>
+                <span class="contact-icon">${item.icon || ''}</span>
                 <div>
-                    <h4>${item.label}</h4>
+                    <h4>${item.label || ''}</h4>
                     <p>${item.link
-                        ? `<a href="${item.link}">${item.value}</a>`
-                        : item.value
+                        ? `<a href="${item.link}">${item.value || ''}</a>`
+                        : (item.value || '')
                     }</p>
                 </div>
             </div>
@@ -171,9 +191,10 @@ async function renderContact() {
 
     // CTA
     const ctaContainer = section.querySelector('.contact-cta');
+    const phoneLink = details.phone?.link || '#contact';
     ctaContainer.innerHTML = `
-        <p>${contact.cta_text}</p>
-        <a href="${details.phone.link}" class="cta-button">${contact.cta_button}</a>
+        <p>${contact.cta_text || ''}</p>
+        <a href="${phoneLink}" class="cta-button">${contact.cta_button || 'Contact Us'}</a>
     `;
 }
 
