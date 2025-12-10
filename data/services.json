@@ -1,0 +1,25 @@
+{
+  "title": "Our Services",
+  "items": [
+    {
+      "icon": "&#127881;",
+      "name": "Private Events",
+      "description": "Birthday parties, anniversaries, and family celebrations. Let us handle the food while you enjoy the moment."
+    },
+    {
+      "icon": "&#128188;",
+      "name": "Corporate Catering",
+      "description": "Impress your clients and team with authentic Indian cuisine for meetings, conferences, and office events."
+    },
+    {
+      "icon": "&#128141;",
+      "name": "Weddings",
+      "description": "Make your special day memorable with our extensive wedding menu and professional service."
+    },
+    {
+      "icon": "&#127860;",
+      "name": "Drop-off Catering",
+      "description": "Fresh, ready-to-serve meals delivered to your doorstep. Perfect for intimate gatherings."
+    }
+  ]
+}

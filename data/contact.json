@@ -1,0 +1,25 @@
+{
+  "title": "Get in Touch",
+  "cta_text": "Ready to bring authentic North Indian flavours to your next event?",
+  "cta_button": "Call Us Today",
+  "details": {
+    "location": {
+      "icon": "&#128205;",
+      "label": "Location",
+      "value": "Auckland, New Zealand",
+      "link": null
+    },
+    "phone": {
+      "icon": "&#128222;",
+      "label": "Phone",
+      "value": "+64 21 234 567",
+      "link": "tel:+6421234567"
+    },
+    "email": {
+      "icon": "&#128231;",
+      "label": "Email",
+      "value": "hello@uncleauntykitchen.co.nz",
+      "link": "mailto:hello@uncleauntykitchen.co.nz"
+    }
+  }
+}

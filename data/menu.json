@@ -1,0 +1,36 @@
+{
+  "title": "Our Specialties",
+  "note": "* Full catering menu available upon request. We accommodate dietary requirements and allergies.",
+  "categories": [
+    {
+      "name": "Vegetarian",
+      "items": [
+        { "name": "Paneer Butter Masala", "description": "Cottage cheese in rich tomato gravy" },
+        { "name": "Dal Makhani", "description": "Slow-cooked black lentils" },
+        { "name": "Chole Bhature", "description": "Spiced chickpeas with fried bread" },
+        { "name": "Aloo Gobi", "description": "Potato & cauliflower stir-fry" },
+        { "name": "Palak Paneer", "description": "Spinach with cottage cheese" }
+      ]
+    },
+    {
+      "name": "Non-Vegetarian",
+      "items": [
+        { "name": "Butter Chicken", "description": "Creamy tomato-based curry" },
+        { "name": "Lamb Rogan Josh", "description": "Aromatic Kashmiri lamb curry" },
+        { "name": "Chicken Biryani", "description": "Fragrant basmati rice with spiced chicken" },
+        { "name": "Tandoori Chicken", "description": "Clay oven roasted chicken" },
+        { "name": "Goat Curry", "description": "Traditional slow-cooked goat" }
+      ]
+    },
+    {
+      "name": "Breads & Sides",
+      "items": [
+        { "name": "Butter Naan", "description": "Soft leavened flatbread" },
+        { "name": "Garlic Naan", "description": "Naan with fresh garlic" },
+        { "name": "Tandoori Roti", "description": "Whole wheat clay oven bread" },
+        { "name": "Jeera Rice", "description": "Cumin-flavoured basmati" },
+        { "name": "Raita", "description": "Cooling yogurt side" }
+      ]
+    }
+  ]
+}

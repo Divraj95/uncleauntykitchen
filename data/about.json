@@ -1,0 +1,12 @@
+{
+  "title": "Our Story",
+  "paragraphs": [
+    "Welcome to Uncle and Aunty Kitchen, where every dish is prepared with the love and care of a family kitchen. Our recipes have been passed down through generations, bringing the authentic taste of North India to your special occasions.",
+    "Whether it's a family gathering, corporate event, or celebration, we bring the rich flavours of Punjab straight to your table. From aromatic biryanis to creamy butter chicken, from hearty dal makhani to fresh tandoori delights — our menu celebrates the diversity of North Indian cuisine."
+  ],
+  "features": [
+    { "icon": "&#127834;", "text": "Fresh Ingredients" },
+    { "icon": "&#128293;", "text": "Traditional Recipes" },
+    { "icon": "&#10084;", "text": "Made with Love" }
+  ]
+}
